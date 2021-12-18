@@ -10,9 +10,12 @@ else
   PROGRAM_NAME=$1
 fi
 
-echo "/$SCAFFOLD_DIR" >> .gitignore
+echo "/$SCAFFOLD_DIR" > .gitignore
 
 REPO_NAME=${REPO_NAME:-"docker-$PROGRAM_NAME"}
+
+export PROGRAM_NAME=$PROGRAM_NAME
+export REPO_NAME=$REPO_NAME
 
 echo $REPO_NAME
 
@@ -22,4 +25,4 @@ git checkout -q $MAIN_BRACH .github && mv .github/ $SCAFFOLD_DIR/
 
 git checkout -q $MAIN_BRACH Dockerfile && mv Dockerfile $SCAFFOLD_DIR/
 
-git checkout -q $MAIN_BRACH README.md && echo `cat README.md`
+git checkout -q $MAIN_BRACH README.md && envsubst < README.md > $SCAFFOLD_DIR/README.md
