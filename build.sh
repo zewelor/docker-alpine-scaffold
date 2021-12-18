@@ -10,12 +10,15 @@ else
   PROGRAM_NAME=$1
 fi
 
-echo "/$SCAFFOLD_DIR" > .gitignore
+if ! grep -q "/$SCAFFOLD_DIR" .gitignore; then
+  echo "/$SCAFFOLD_DIR" >> .gitignore
+fi
 
 REPO_NAME=${REPO_NAME:-"docker-$PROGRAM_NAME"}
 
 export PROGRAM_NAME=$PROGRAM_NAME
 export REPO_NAME=$REPO_NAME
+export $(cat .env | xargs)
 
 echo "New repo name: $REPO_NAME"
 
