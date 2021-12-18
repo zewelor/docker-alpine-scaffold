@@ -1,5 +1,5 @@
 # Dockerized $PROGRAM_NAME
-![Build status](https://github.com/$GH_USER/$REPO_NAME/workflows/Build/badge.svg)
+[![Build and push](https://github.com/$GH_USER/$REPO_NAME/actions/workflows/image.yml/badge.svg)](https://github.com/$GH_USER/$REPO_NAME/actions/workflows/image.yml)
 
 Alpine based docker image with $PROGRAM_NAME, multiarch container.
 
