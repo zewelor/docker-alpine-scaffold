@@ -7,3 +7,4 @@ Alpine based docker image with $PROGRAM_NAME, multiarch container.
 
 ```
 docker run --rm -it ghcr/$GH_USER/$REPO_NAME:latest
+```
