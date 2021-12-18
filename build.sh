@@ -20,7 +20,7 @@ export PROGRAM_NAME=$PROGRAM_NAME
 export REPO_NAME=$REPO_NAME
 export $(cat .env | xargs)
 
-echo "New repo name: $REPO_NAME"
+echo "New repo name: '$REPO_NAME'. Set it up here: https://github.com/new"
 
 mkdir -p $SCAFFOLD_DIR
 
