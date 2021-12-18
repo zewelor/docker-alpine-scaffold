@@ -17,7 +17,7 @@ REPO_NAME=${REPO_NAME:-"docker-$PROGRAM_NAME"}
 export PROGRAM_NAME=$PROGRAM_NAME
 export REPO_NAME=$REPO_NAME
 
-echo $REPO_NAME
+echo "New repo name: $REPO_NAME"
 
 mkdir -p $SCAFFOLD_DIR
 
@@ -25,4 +25,7 @@ git checkout -q $MAIN_BRACH .github && mv .github/ $SCAFFOLD_DIR/
 
 git checkout -q $MAIN_BRACH Dockerfile && mv Dockerfile $SCAFFOLD_DIR/
 
-git checkout -q $MAIN_BRACH README.md && envsubst < README.md > $SCAFFOLD_DIR/README.md
+git checkout -q $MAIN_BRACH README.md && envsubst < README.md > $SCAFFOLD_DIR/README.md && rm README.md
+
+cd $SCAFFOLD_DIR
+git init -q
