@@ -3,4 +3,4 @@ FROM alpine:${ALPINE_VERSION}
 
 RUN apk add --no-cache 
 
-ENTRYPOINT []
+ENTRYPOINT [""]
