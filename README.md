@@ -1,3 +1,9 @@
 # Dockerized $PROGRAM_NAME
 ![Build status](https://github.com/zewelor/$REPO_NAME/workflows/Build/badge.svg)
-[![Download](https://img.shields.io/docker/pulls/zewelor/$REPO_NAME.svg?style=for-the-badge)](https://hub.docker.com/r/joonas/spotifyd/)
+
+Alpine based docker image with $PROGRAM_NAME
+
+## Run
+
+```
+docker run --rm -it ghcr/zewelor/$REPO_NAME:latest
