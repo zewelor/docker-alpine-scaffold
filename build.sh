@@ -32,3 +32,5 @@ git checkout -q $MAIN_BRACH README.md && envsubst < README.md > $SCAFFOLD_DIR/RE
 
 cd $SCAFFOLD_DIR
 git init -q
+git remote add origin git@github.com:$GH_USER/$REPO_NAME.git
+echo "/.env" > .gitignore
