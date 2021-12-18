@@ -35,6 +35,9 @@ jobs:
           # push: true
           build-args: |
             ALPINE_VERSION=${{ env.PREVIOUS_STABLE_ALPINE }}
+          labels: |
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
+            org.opencontainers.image.revision=${{ github.sha }}
           platforms: linux/amd64,linux/arm64, linux/arm/v7
           tags: |
             ${{ github.repository }}:latest
