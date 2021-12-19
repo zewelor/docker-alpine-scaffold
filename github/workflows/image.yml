@@ -33,6 +33,8 @@ jobs:
       - name: Build and export to Docker
         uses: docker/build-push-action@v2
         with:
+          build-args: |
+            ALPINE_VERSION=${{ steps.alpine_version_checker.outputs.PREVIOUS_STABLE_ALPINE }}
           load: true
           tags: ${{ env.TEST_TAG }}
       - name: Test
@@ -44,7 +46,7 @@ jobs:
         with:
           push: true
           build-args: |
-            ALPINE_VERSION=${{ env.PREVIOUS_STABLE_ALPINE }}
+            ALPINE_VERSION=${{ steps.alpine_version_checker.outputs.PREVIOUS_STABLE_ALPINE }}
           labels: |
             org.opencontainers.image.source=https://github.com/${{ github.repository }}
             org.opencontainers.image.revision=${{ github.sha }}
