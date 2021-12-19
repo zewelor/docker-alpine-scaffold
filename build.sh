@@ -27,11 +27,14 @@ mkdir -p $SCAFFOLD_DIR
 git checkout -q $MAIN_BRACH github                && \
 mkdir -p $SCAFFOLD_DIR/.github/workflows/         && 
 envsubst < github/workflows/image.yml > $SCAFFOLD_DIR/.github/workflows/image.yml 
-rm -rf github
+rm -rf github && git restore --staged github
 
-git checkout -q $MAIN_BRACH Dockerfile && mv Dockerfile $SCAFFOLD_DIR/
+git checkout -q $MAIN_BRACH Dockerfile && mv Dockerfile $SCAFFOLD_DIR/ && git restore --staged Dockerfile
 
-git checkout -q $MAIN_BRACH README.md && envsubst < README.md > $SCAFFOLD_DIR/README.md && rm README.md
+git checkout -q $MAIN_BRACH README.md           && \
+envsubst < README.md > $SCAFFOLD_DIR/README.md  && \
+rm README.md                                    && \
+git restore --staged README.md
 
 cd $SCAFFOLD_DIR
 git init -q
