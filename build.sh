@@ -24,9 +24,9 @@ echo "New repo name: '$REPO_NAME'. Set it up here: https://github.com/new"
 
 mkdir -p $SCAFFOLD_DIR
 
-git checkout -q $MAIN_BRACH .github && \
+git checkout -q $MAIN_BRACH github && \
 mkdir -p $SCAFFOLD_DIR/.github/workflows/         && 
-envsubst < .github/workflows/image.yml > $SCAFFOLD_DIR/.github/workflows/image.yml
+envsubst < github/workflows/image.yml > $SCAFFOLD_DIR/.github/workflows/image.yml
 
 git checkout -q $MAIN_BRACH Dockerfile && mv Dockerfile $SCAFFOLD_DIR/
 
