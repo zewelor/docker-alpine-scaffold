@@ -15,14 +15,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set the PREVIOUS_STABLE_ALPINE env
-        id: step_one
+        id: alpine_version_checker
         run: |
-          echo "PREVIOUS_STABLE_ALPINE=`curl -q https://dl-cdn.alpinelinux.org/alpine/ |grep ">v" | cut -d 'v' -f 2 | cut -d '/' -f 1  | sort --field-separator=. --version-sort | tail -2 | head -1`" >> $GITHUB_ENV
+          echo "::set-output name=PREVIOUS_STABLE_ALPINE::`curl -q https://dl-cdn.alpinelinux.org/alpine/ |grep ">v" | cut -d 'v' -f 2 | cut -d '/' -f 1  | sort --field-separator=. --version-sort | tail -2 | head -1`" >> $GITHUB_ENV
       - name: checkout code
         uses: actions/checkout@v2
-      - name: Set the PREVIOUS_STABLE_ALPINE env
-        run: |
-          echo "Using alpine version: $PREVIOUS_STABLE_ALPINE"
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
@@ -53,5 +50,5 @@ jobs:
             org.opencontainers.image.revision=${{ github.sha }}
           platforms: linux/amd64,linux/arm64, linux/arm/v7
           tags: |
-            ghcr.io/$GH_USER/$PROGRAM_NAME:alpine-${{ env.PREVIOUS_STABLE_ALPINE }}
+            ghcr.io/$GH_USER/$PROGRAM_NAME:alpine-${{ steps.alpine_version_checker.outputs.PREVIOUS_STABLE_ALPINE }}
             ghcr.io/$GH_USER/$PROGRAM_NAME:latest
